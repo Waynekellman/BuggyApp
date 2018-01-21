@@ -19,9 +19,10 @@ public class WordAnalyzer {
      * @return the first repeated character, or 0 if none found
      */
     public char firstRepeatedCharacter(String word) {
-        for (int i = 0; i < word.length(); i++) {
+        //The bug is when the loop get to the end and the if statement check the char after the end of the word.
+        for (int i = 1; i < word.length(); i++) {
             char ch = word.charAt(i);
-            if (ch == word.charAt(i + 1))
+            if (ch == word.charAt(i - 1))
                 return ch;
         }
         return 0;
@@ -44,8 +45,9 @@ public class WordAnalyzer {
     }
 
     private int find(String word, char c, int pos) {
+        //I change the if statement so that the loops skips the position of the char that is submitted.
         for (int i = pos; i < word.length(); i++) {
-            if (word.charAt(i) == c) {
+            if (word.charAt(i) == c && i != pos) {
                 return i;
             }
         }
@@ -65,6 +67,10 @@ public class WordAnalyzer {
                 if (word.charAt(i - 1) != word.charAt(i)) {
                     c++;
                 }
+                //I added an else if to check if the first letter
+                //is a repeated character because the stuff before it skips the first letter.
+            } else if (word.charAt(i) == word.charAt(i - 1) && i == 1){
+                c++;
             }
         }
         return c;

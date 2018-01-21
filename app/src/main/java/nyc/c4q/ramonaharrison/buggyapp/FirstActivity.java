@@ -30,7 +30,7 @@ public class FirstActivity extends AppCompatActivity {
         myTextView = (TextView) findViewById(R.id.my_text_view);
 
         if (savedInstanceState != null) {
-            welcome = savedInstanceState.getString("welcomestring");
+            welcome = savedInstanceState.getString("welcomeString");
         } else {
             welcome = "Welcome to the Buggy App!";
         }
@@ -41,6 +41,6 @@ public class FirstActivity extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putString("welcomstring", welcome);
+        outState.putString("welcomeString", welcome);
     }
 }
